@@ -29,7 +29,7 @@ m_1 = m;
 %Terminals = 6;
 Temperature = temperature;
 %fet_flag
-term=Terminals;
+term=str2double(Terminals);
 %spl character
 
 
@@ -67,9 +67,9 @@ fprintf(fileID, '.param m1 = %s GG= %s \n\n\n', m_1 , VG_Start);
 
 
 if term==5
-    fprintf(fileID, 'xm1  d g 0 0 0 0 %s w=wn l=ln m=m1 \n', modelname);
-    fprintf(fileID, 'xm2  d0 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
-    fprintf(fileID, 'xm3  d1 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
+    fprintf(fileID, 'xm1  d g 0 0 0  %s w=wn l=ln m=m1 \n', modelname);
+    fprintf(fileID, 'xm2  d0 g 0 0 0  %s w=wn l=ln m=m1 \n\n', modelname);
+    fprintf(fileID, 'xm3  d1 g 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
  elseif term==6
     fprintf(fileID, 'xm1  d g 0 0 0 0 %s w=wn l=ln m=m1 \n', modelname);
     fprintf(fileID, 'xm2  d0 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);

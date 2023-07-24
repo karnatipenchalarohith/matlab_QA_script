@@ -1,4 +1,4 @@
-function filename = Generate_vth_l(lib,corner,modelname,W,L,m,temperature,VGmax,VDD,VG_Step,VDlin,vdd_sat,wmin,wmax,lmin,lmax,flag_fet,Terminals,shrink,lminmultiplier)
+function filename = Generate_vth_l(lib,corner,modelname,W,L,m,temperature,VGmax,VDD,VG_Step,VDlin,vdd_sat,wmin,wmax,lmin,lmax,flag_fet,Terminals,shrink)
 
 VDD = VDD;
 % VBB = VD_VB;
@@ -6,9 +6,9 @@ VGG='GG';
 VGmax=VGmax;
 
 if flag_fet==-1
-    VG_Start='0.5';
-else 
     VG_Start='-0.5';
+else 
+    VG_Start='0.5';
     
 end
 
@@ -29,9 +29,9 @@ m_1 = m;
 %Terminals = 6;
 Temperature = temperature;
 %fet_flag
-term=str2double(Terminals);
+term=Terminals;
 %spl character
-term
+
 
 %Library
 %lib = '/user/rkar/model_assessments/tc18c_model_update/model/all.scs';
@@ -67,9 +67,9 @@ fprintf(fileID, '.param m1 = %s GG= %s \n\n\n', m_1 , VG_Start);
 
 
 if term==5
-    fprintf(fileID, 'xm1  d g 0 0 0  %s w=wn l=ln m=m1 \n', modelname);
-    fprintf(fileID, 'xm2  d0 g 0 0 0  %s w=wn l=ln m=m1 \n\n', modelname);
-    fprintf(fileID, 'xm3  d1 g 0 0 0  %s w=wn l=ln m=m1 \n\n', modelname);
+    fprintf(fileID, 'xm1  d g 0 0 0 0 %s w=wn l=ln m=m1 \n', modelname);
+    fprintf(fileID, 'xm2  d0 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
+    fprintf(fileID, 'xm3  d1 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
  elseif term==6
     fprintf(fileID, 'xm1  d g 0 0 0 0 %s w=wn l=ln m=m1 \n', modelname);
     fprintf(fileID, 'xm2  d0 g 0 0 0 0 %s w=wn l=ln m=m1 \n\n', modelname);
@@ -100,8 +100,7 @@ fprintf(fileID, '+ %s %s 1 \n', wmax, lmax);
 
 %Wmax & Lmin
 
-% multipler = [100 80 60 40 30 20 15 12 10 9 8 6 5 4.5 4 3.8 3.5 3.1 3 2.7 2.5 2.2 2.1 2 1.9 1.8 1.7 1.6 1.5 1.4 1.3 1.2 1.1 1];
-multipler = lminmultiplier;
+multipler = [100 80 60 40 30 20 15 12 10 9 8 6 5 4.5 4 3.8 3.5 3.1 3 2.7 2.5 2.2 2.1 2 1.9 1.8 1.7 1.6 1.5 1.4 1.3 1.2 1.1 1];
 %Lmin = str2double(lmin);
 newlmin=lmin*multipler;
 
@@ -113,8 +112,7 @@ end
 
 fprintf(fileID, '+ %s %s 1 \n', wmin, lmax);
 
-% multipler = [100 80 60 40 30 20 15 12 10 9 8 6 5 4.5 4 3.8 3.5 3.1 3 2.7 2.5 2.2 2.1 2 1.9 1.8 1.7 1.6 1.5 1.4 1.3 1.2 1.1 1];
-multipler = lminmultiplier;
+multipler = [100 80 60 40 30 20 15 12 10 9 8 6 5 4.5 4 3.8 3.5 3.1 3 2.7 2.5 2.2 2.1 2 1.9 1.8 1.7 1.6 1.5 1.4 1.3 1.2 1.1 1];
 %Lmax = str2double(lmax);
 newlmax=lmin*multipler;
 
